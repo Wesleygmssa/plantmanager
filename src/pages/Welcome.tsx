@@ -7,7 +7,9 @@ import { Button } from "../components/Button";
 export function Welcome() {
   const [visible, setVisible] = useState(false);
 
-  function handleVisibility() {}
+  function handleVisibility() {
+    setVisible(true);
+  }
 
   return (
     <SafeAreaView style={styles.Container}>
@@ -15,12 +17,11 @@ export function Welcome() {
         Gerencie {"\n"} suas plantas {"\n"} de forma fácil
       </Text>
       <Image source={wateringImg} style={styles.image} />
-
       <Text style={styles.subtitle}>
         Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
         sempre que precisar.
       </Text>
-      <Button title="Avançar" onPress={() => {}} />
+      <Button title=">" onPress={() => {}} />
     </SafeAreaView>
   );
 }
