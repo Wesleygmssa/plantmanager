@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView, Text, Image, StyleSheet } from "react-native";
 import wateringImg from "../assets/watering.png";
 import colors from "../styles/colors";
 import { Button } from "../components/Button";
 
 export function Welcome() {
+  const [visible, setVisible] = useState(false);
+
+  function handleVisibility() {}
+
   return (
     <SafeAreaView style={styles.Container}>
       <Text style={styles.title}>
@@ -16,7 +20,7 @@ export function Welcome() {
         Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
         sempre que precisar.
       </Text>
-      <Button title="Avançar" />
+      <Button title="Avançar" onPress={() => {}} />
     </SafeAreaView>
   );
 }
