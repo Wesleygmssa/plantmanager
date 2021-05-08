@@ -1,23 +1,16 @@
 import React from "react";
-import { SafeAreaView, Text, Image, StyleSheet } from "react-native";
-import wateringImg from "../assets/watering.png";
+import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import colors from "../styles/colors";
-import { Button } from "../components/Button";
 
-export function Welcome() {
+interface ButtonProps {
+  title: string;
+}
+
+export function Button({ title }: ButtonProps) {
   return (
-    <SafeAreaView style={styles.Container}>
-      <Text style={styles.title}>
-        Gerencie {"\n"} suas plantas {"\n"} de forma fácil
-      </Text>
-      <Image source={wateringImg} style={styles.image} />
-
-      <Text style={styles.subtitle}>
-        Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
-        sempre que precisar.
-      </Text>
-      <Button title="Avançar" />
-    </SafeAreaView>
+    <TouchableOpacity style={styles.button} activeOpacity={0.8}>
+      <Text style={styles.buttonText}>{title}</Text>
+    </TouchableOpacity>
   );
 }
 
