@@ -14,6 +14,7 @@ export default function App() {
     Jost_600SemiBold,
   });
 
+  //enquanto as fontes não forem carregadas
   if (!fontsLoaded) {
     return <AppLoading />;
   }
