@@ -3,9 +3,8 @@
 </h3>
 
 <p align="center">
-   <img src="reactnative.png" >
+   <img src="plantmanager.gif" >
 </p>
-
 
 ### :computer: How To Run
 
