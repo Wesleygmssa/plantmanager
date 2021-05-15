@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { EnvariomentButton } from "../components/EnviromantButton";
 import { Header } from "../components/Header";
+import { Load } from "../components/Load";
 import { PlantCardPrimay } from "../components/PlantCardPrimary";
 import api from "../services/api";
 import colors from "../styles/colors";
@@ -30,6 +31,7 @@ export function PlantSelect() {
   const [plants, setPlants] = useState<PlatnsProps[]>();
   const [filteredPlants, setFilteredPlants] = useState<PlatnsProps[]>();
   const [enviomentSelected, setEnviomentSelected] = useState("all");
+  const [loading, setLoading] = useState(true);
 
   function handleEnviomentSelected(envionment: string) {
     setEnviomentSelected(envionment);
@@ -62,11 +64,15 @@ export function PlantSelect() {
     async function fetchPlants() {
       const { data } = await api.get("plants?_sort=name&order=asc");
       setPlants(data);
+      setLoading(false);
     }
 
     fetchPlants();
   }, []);
 
+  if (loading) {
+    return <Load />;
+  }
   return (
     <View style={styles.conatiner}>
       <View style={styles.header}>
