@@ -28,9 +28,17 @@ interface PlatnsProps {
 export function PlantSelect() {
   const [envioments, setEnvioments] = useState<EnviromentProps[]>();
   const [plants, setPlants] = useState<PlatnsProps[]>();
+  const [enviomentSelected, setEnviomentSelected] = useState("all");
+
+  function handleEnviomentSelected(envioment: string) {
+    setEnviomentSelected(envioment);
+  }
+
   useEffect(() => {
     async function fetchEnvironment() {
-      const { data } = await api.get("plants_environments");
+      const { data } = await api.get(
+        "plants_environments?_sort=title&order=asc"
+      );
       console.log(data);
       setEnvioments([{ key: "all", title: "Todos" }, ...data]);
     }
@@ -40,7 +48,7 @@ export function PlantSelect() {
 
   useEffect(() => {
     async function fetchPlants() {
-      const { data } = await api.get("plants");
+      const { data } = await api.get("plants?_sort=name&order=asc");
       setPlants(data);
     }
 
@@ -57,7 +65,15 @@ export function PlantSelect() {
       <View>
         <FlatList
           data={envioments}
-          renderItem={({ item }) => <EnvariomentButton title={item.title} />}
+          renderItem={({ item }) => (
+            <EnvariomentButton
+              title={item.title}
+              active={item.key === enviomentSelected}
+              onPress={() => {
+                handleEnviomentSelected(item.key);
+              }}
+            />
+          )}
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.enviromentList}
