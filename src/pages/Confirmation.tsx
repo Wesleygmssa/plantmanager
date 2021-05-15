@@ -10,6 +10,7 @@ import fonts from "../styles/fonts";
 export function Confirmation() {
   const navigation = useNavigation();
 
+  //Navegação de páginas
   function handleMoveOn() {
     navigation.navigate("PlantSelect");
   }
