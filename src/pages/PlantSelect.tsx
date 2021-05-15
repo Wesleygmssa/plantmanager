@@ -18,7 +18,7 @@ interface PlatnsProps {
   about: string;
   water_tips: string;
   photo: string;
-  enviroments: [string];
+  environments: [string];
   frequency: {
     times: number;
     repeat_every: string;
@@ -28,10 +28,22 @@ interface PlatnsProps {
 export function PlantSelect() {
   const [envioments, setEnvioments] = useState<EnviromentProps[]>();
   const [plants, setPlants] = useState<PlatnsProps[]>();
+  const [filteredPlants, setFilteredPlants] = useState<PlatnsProps[]>();
   const [enviomentSelected, setEnviomentSelected] = useState("all");
 
-  function handleEnviomentSelected(envioment: string) {
-    setEnviomentSelected(envioment);
+  function handleEnviomentSelected(envionment: string) {
+    setEnviomentSelected(envionment);
+
+    if (envionment === "all") {
+      return setFilteredPlants(plants);
+    }
+
+    //plantas filtradas
+    const filtered = plants?.filter((plant) =>
+      plant.environments?.includes(envionment)
+    );
+
+    setFilteredPlants(filtered);
   }
 
   useEffect(() => {
@@ -81,7 +93,7 @@ export function PlantSelect() {
       </View>
       <View style={styles.plants}>
         <FlatList
-          data={plants}
+          data={filteredPlants}
           renderItem={({ item }) => <PlantCardPrimay data={item} />}
           showsVerticalScrollIndicator={false}
           numColumns={2}
